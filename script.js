@@ -6,7 +6,7 @@ let categories = [
 ];
 
 let inventory = [
-    { productId: 1, productName: null , category: 1, price: 0.99, stock: 150 },
+    { productId: 1, productName: "Banana" , category: 1, price: 0.99, stock: 150 },
     { productId: 2, productName: "Orange Juice", category: 2, price: 3.49, stock: 40 },
     { productId: 3, productName: "Juice", category: 2, price: 5.5, stock: -14 }
 ];
@@ -39,6 +39,23 @@ inventory.forEach((product) => {
 })
 
 
+
+// edited code after feedback
+
+const newProduct = { productId: 4, productName: "Milk", category: 2, price: 6, stock: 45 }
+
+let addProduct = function add() {
+    if (newProduct.productId || newProduct.productName || newProduct.category || newProduct.price || newProduct.stock !== null) {
+        inventory.push(newProduct)
+        console.log(inventory);
+    } else {
+        console.log("error");
+    }
+}
+
+addProduct()
+
+
 /*-----------------------------------------------------------------------*/
 
 
@@ -61,6 +78,19 @@ function finding(n) {
 }
 finding(4)   // 5. ใส่ค่า n ครับ
 
+// edited after feedback
+
+function find(m) {
+    let check =inventory.find(p => p.productName.toLowerCase() === m.toLowerCase())
+    if (check === undefined) {
+        console.log("The product is not found!");
+    } else {
+        console.log(check);
+    }
+}
+find("milk")
+
+ 
 /*-----------------------------------------------------------------------*/
 
 // **4. Updating Stock** <br>
@@ -87,6 +117,20 @@ function idStock(n) {
 idStock(3) //5. ใส่ productID ครับ
 
 
+//edited after feedback 
+
+function updateProduct(inputName, amount) {
+    let look =inventory.find(p => p.productName.toLowerCase() === inputName.toLowerCase())
+    if (look === undefined) {
+        console.log("The product is not found!");
+    } else {
+        look.stock += amount;
+        console.log(look);
+    }
+}
+updateProduct("milk", 2)
+
+
 /*-----------------------------------------------------------------------*/
 
 // **5. Deleting Product**<br>
@@ -98,3 +142,19 @@ const del  = inventory.filter(p => p.stock > 0)
 console.log(del);
 //2. log del ออกมาจะเป็น array ของสินค้าที่ยังมีในสต็อค แล้ว log ข้แความข้างล่าง
 console.log("You have removed the products that is out of stock successfully!");
+
+// edited after feedback
+
+function removeProduct(m) {
+    let removed = inventory.find(p => p.productName.toLowerCase() === m.toLowerCase())
+    if (removed === undefined) {
+        console.log("The product is not found!");
+    } else {
+        console.log(removed);
+        let index = inventory.findIndex(p => p.productName.toLowerCase() === m.toLowerCase());
+        inventory.splice(index,1)
+        console.log(removed.productName + " has been removed from stock!");
+        console.log(inventory);
+}
+}
+removeProduct("milk");
