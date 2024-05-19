@@ -16,16 +16,28 @@ let inventory = [
 
 /* ผมเปลี่ยนมาเป็นเช็คสินค้าถ้าเป็น null ให้ขึ้นเตือน แต่ถ้าไม่ ให้ใช้ .push ครับ  */ 
 
-const newProduct = { productId: 4, productName: "Milk", category: 2, price: 6, stock: 45 }
-let addProduct = function add() {
-    if (newProduct.productId || newProduct.productName || newProduct.category || newProduct.price || newProduct.stock !== null) {
-        inventory.push(newProduct)
-        console.log(inventory);
-    } else {
-        console.log("error");
+
+/// 2nd edition after feedback: ข้อนี้ผมสร้าง array ของ new inventory แล้วเช็คว่าถ้า input ไม่ตรงกับ find() ก็แจ้งเตือน ครับ 
+// สามารถใช้ parameter m เป็น input ได้เลยครับ ถ้าเป็นสินค้าที่สะกดถูกตาม productName ก็จะแสดงว่าได้เติมของเเล้วครับ
+let Newinventory = [
+    { productId: 4, productName: "Strawberry" , category: 1, price: null, stock: 10 },
+    { productId: 5, productName: "Apple Juice", category: 2, price: 39, stock: 90 },
+    { productId: 6, productName: "Coke", category: 2, price: 9.5, stock: 4 }
+];
+
+let addProduct = function add(m) {
+    let find = Newinventory.find(p => p.productName.toLowerCase() === m.toLowerCase())
+    if (!find) {
+        console.log("Incorrect input! Try again.");
     }
+    else if (find.productId !== null && find.productName !== null && find.category !== null && find.price !== null && find.stock !== null)
+        { inventory.push(find)
+        console.log(`The product added is ${find.productName}.`);
+        console.log(inventory);
+    } 
 }
-addProduct()
+addProduct("coke")
+addProduct("apple juice")
 
 
 
@@ -34,31 +46,40 @@ addProduct()
 // edited after feedback
 
 /* ผมใช้ toLowercase() + toUppercase มาทำให้ input เป็นเหมือนกันแล้วหาสินค้า */
+
+/// 2nd edition after feedback: console log ให้มีความหมายขึ้นมานิดนึงแล้วครับ 555
+
 function find(m) {
     let check =inventory.find(p => p.productName.toLowerCase() === m.toLowerCase())
-    if (check === undefined) {
-        console.log("The product is not found!");
+    console.log(check);
+    if (!check) {
+        console.log("Incorrect product name!");
     } else {
-        console.log(check);
-    }
+    }console.log(`The product is ${check.productName}. The price is $${check.price}. ${check.stock} items left in stock`);
 }
-find("milk")
+find("banana")
+
+
+
 
 //4. Updating Stock
 
 //edited after feedback 
 /* ผมใช้ input parameter 2 ตัวคือชื่อสินค้าที่หาและจำนวนที่อยากเพิ่มครับ */
 
+
+/// 2nd edition after feedback: ข้อนี้ผมเช็คสองอย่างคือ type ของ amount ให้เป็นตัวเลข และ amount ต้องมากกว่า 0 กับ การสะกดคำของ inputName ครับ 
+
 function updateProduct(inputName, amount) {
-    let look =inventory.find(p => p.productName.toLowerCase() === inputName.toLowerCase())
-    if (look === undefined) {
-        console.log("The product is not found!");
+    let look = inventory.find(p => p.productName.toLowerCase() === inputName.toLowerCase())
+    if (typeof amount !== 'number' || amount <= 0 || !look) {
+        console.log("Incorrect name or amount! The amount must be only positive number!");
     } else {
         look.stock += amount;
         console.log(look);
     }
 }
-updateProduct("milk", 2)
+updateProduct("banana", 3)
 
 //5. Deleting Product
 
@@ -77,5 +98,4 @@ function removeProduct(m) {
 }
 }
 removeProduct("milk");
-
 
