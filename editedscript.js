@@ -35,9 +35,10 @@ let addProduct = function add(m) {
         console.log(`The product added is ${find.productName}.`);
         console.log(inventory);
     } 
-}
+
 addProduct("coke")
 addProduct("apple juice")
+
 
 
 
