@@ -17,27 +17,40 @@ let inventory = [
 /* ผมเปลี่ยนมาเป็นเช็คสินค้าถ้าเป็น null ให้ขึ้นเตือน แต่ถ้าไม่ ให้ใช้ .push ครับ  */ 
 
 
+
 /// 2nd edition after feedback: ข้อนี้ผมสร้าง array ของ new inventory แล้วเช็คว่าถ้า input ไม่ตรงกับ find() ก็แจ้งเตือน ครับ 
 // สามารถใช้ parameter m เป็น input ได้เลยครับ ถ้าเป็นสินค้าที่สะกดถูกตาม productName ก็จะแสดงว่าได้เติมของเเล้วครับ
-let Newinventory = [
-    { productId: 4, productName: "Strawberry" , category: 1, price: null, stock: 10 },
-    { productId: 5, productName: "Apple Juice", category: 2, price: 39, stock: 90 },
-    { productId: 6, productName: "Coke", category: 2, price: 9.5, stock: 4 }
-];
+// let Newinventory = [
+//     { productId: 4, productName: "Strawberry" , category: 1, price: null, stock: 10 },
+//     { productId: 5, productName: "Apple Juice", category: 2, price: 39, stock: 90 },
+//     { productId: 6, productName: "Coke", category: 2, price: 9.5, stock: 4 }
+// ];
 
-let addProduct = function add(m) {
-    let find = Newinventory.find(p => p.productName.toLowerCase() === m.toLowerCase())
-    if (!find) {
-        console.log("Incorrect input! Try again.");
-    }
-    else if (find.productId !== null && find.productName !== null && find.category !== null && find.price !== null && find.stock !== null)
-        { inventory.push(find)
-        console.log(`The product added is ${find.productName}.`);
-        console.log(inventory);
-    } 
+// let addProduct = function add(m) {
+//     let find = Newinventory.find(p => p.productName.toLowerCase() === m.toLowerCase())
+//     if (!find) {
+//         console.log("Incorrect input! Try again.");
+//     }
+//     else if (find.productId !== null && find.productName !== null && find.category !== null && find.price !== null && find.stock !== null)
+//         { inventory.push(find)
+//         console.log(`The product added is ${find.productName}.`);
+//         console.log(inventory);
+//     } 
 
-addProduct("coke")
-addProduct("apple juice")
+// addProduct("coke")
+// addProduct("apple juice")
+
+
+//3rd edition after feedback
+
+let strawberry =  { productId: 4, productName: "Strawberry" , category: 1, price: null, stock: 10 };
+
+function addItem(m) {
+    inventory.push(m)
+    console.log(inventory);
+}
+addItem(strawberry)
+
 
 
 
