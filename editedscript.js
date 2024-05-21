@@ -43,15 +43,35 @@ let inventory = [
 
 //3rd edition after feedback
 
-let strawberry =  { productId: 4, productName: "Strawberry" , category: 1, price: null, stock: 10 };
-
+// 1. check if all complte with the correct type
+// 2. check id 
 function addItem(m) {
-    inventory.push(m)
-    console.log(inventory);
+
+    if (typeof m.productId !== "number" || inventory.find(p => p.productId === m.productId || !m.productId)) {
+        console.log("Warning: Product ID must be a unique number and filled");
+        return;
+    }
+    else if (typeof m.productName !== 'string' || !m.productName) {
+            console.log("Warning: Product ID must be a string and filled");
+        }
+    else if (typeof m.category !== 'number' || !m.category) {
+            console.log("Warning: Product category must be a number and filled");
+        }
+    else if (typeof m.price !== 'number' || !m.price) {
+            console.log("Warning: Product category must be a number and filled");
+        }
+    else if (typeof m.stock !== 'number' || !m.stock) {
+            console.log("Warning: Product stock must be a number and filled");
+        }
+    else {
+            inventory.push(m)
+        }
+    
+        console.log(inventory);
 }
-addItem(strawberry)
 
-
+addItem({ productId: 4, productName: "Strawberry" , category: 1, price: 4.0, stock: 10 })
+addItem({ productId: 5, productName: "Cow Milk" , category: 2 , price: 1.2 , stock: 10 })
 
 
 
